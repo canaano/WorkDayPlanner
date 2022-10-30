@@ -44,4 +44,17 @@ $(document).ready(function () {
 // save in local storage
         localStorage.setItem(time, value);
     });
+// load saved data from local storage
+    hourUpdater();
+    
+    $('#hour-9 .tasks').val(localStorage.getItem('hour-9'));
+    $('#hour-10 .tasks').val(localStorage.getItem('hour-10'));
+    $('#hour-11 .tasks').val(localStorage.getItem('hour-11'));
+    $('#hour-12 .tasks').val(localStorage.getItem('hour-12'));
+    $('#hour-13 .tasks').val(localStorage.getItem('hour-13'));
+    $('#hour-14 .tasks').val(localStorage.getItem('hour-14'));
+    $('#hour-15 .tasks').val(localStorage.getItem('hour-15'));
+    $('#hour-16 .tasks').val(localStorage.getItem('hour-16'));
+    $('#hour-17 .tasks').val(localStorage.getItem('hour-17'));
+
 });
