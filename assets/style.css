@@ -71,3 +71,12 @@ body {
     transition: all 0.3s ease-in-out;
   }
   
+  .confirmation {
+    display: none;
+    padding-bottom: 10px;
+    color: black;
+  }
+
+  .show {
+    display: block;
+  }

@@ -1,9 +1,8 @@
+$(document).ready(function () {
 // show current time and date
 var todayDate = moment().format('dddd, MMM Do YYYY');
 $("#currentDay").html(todayDate);
 
-$(document).ready(function () {
-// set up time based color coding logic for past present and future
 // set variable based on current time compared to timeblocks 
     function whereInTime(blockHour) {
         var currentHour = moment().hours();
@@ -17,7 +16,6 @@ $(document).ready(function () {
         $('.time-block').each(function () {
             var blockHour = parseInt($(this).attr('id').split('-')[1]);
     // loop through timeblocks to determine class to call   
-    console.log(blockHour)
             switch (whereInTime(blockHour)) {
             case 'past':
                 $(this).addClass('past');
@@ -43,9 +41,18 @@ $(document).ready(function () {
         var time = $(this).parent().attr('id');
 // save in local storage
         localStorage.setItem(time, value);
+
+        $('.confirmation').addClass('show');
+
+        // Timeout to remove 'show' class after 5 seconds
+        setTimeout(function () {
+          $('.confirmation').removeClass('show');
+        }, 3000);
     });
 // load saved data from local storage
     hourUpdater();
+
+    setInterval(hourUpdater, 60000)
 
 // populate tasks from local storage
     Array(9).forEach((item, i) => $(`#hour-${i +8} .tasks`).val(localStorage.getItem(`hour-${i +8}`)))
