@@ -5,7 +5,7 @@ $("#currentDay").html(todayDate);
 $(document).ready(function () {
 // set up time based color coding logic for past present and future
 // set variable based on current time compared to timeblocks 
-    function getTime(blockHour) {
+    function whereInTime(blockHour) {
         var currentHour = moment().hours();
         if (blockHour < currentHour) return 'past'
         if (blockHour === currentHour) return 'present'
@@ -15,10 +15,10 @@ $(document).ready(function () {
     function hourUpdater() {
     // log just the number and not 'hour' 
         $('.time-block').each(function () {
-            var blockhour = parseInt($(this).attr('id').split('-')[1]);
+            var blockHour = parseInt($(this).attr('id').split('-')[1]);
     // loop through timeblocks to determine class to call   
-    console.log()
-            switch (getTime(blockHour)) {
+    console.log(blockHour)
+            switch (whereInTime(blockHour)) {
             case 'past':
                 $(this).addClass('past');
                 break;
@@ -46,15 +46,8 @@ $(document).ready(function () {
     });
 // load saved data from local storage
     hourUpdater();
-    
-    $('#hour-9 .tasks').val(localStorage.getItem('hour-9'));
-    $('#hour-10 .tasks').val(localStorage.getItem('hour-10'));
-    $('#hour-11 .tasks').val(localStorage.getItem('hour-11'));
-    $('#hour-12 .tasks').val(localStorage.getItem('hour-12'));
-    $('#hour-13 .tasks').val(localStorage.getItem('hour-13'));
-    $('#hour-14 .tasks').val(localStorage.getItem('hour-14'));
-    $('#hour-15 .tasks').val(localStorage.getItem('hour-15'));
-    $('#hour-16 .tasks').val(localStorage.getItem('hour-16'));
-    $('#hour-17 .tasks').val(localStorage.getItem('hour-17'));
+
+// populate tasks from local storage
+    Array(9).forEach((item, i) => $(`#hour-${i +8} .tasks`).val(localStorage.getItem(`hour-${i +8}`)))
 
 });
